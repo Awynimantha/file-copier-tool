@@ -1,15 +1,15 @@
-package java.main.copier.models;
+package files;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
-class File {
+public class File {
     private String location;
     private String name;
-    private ArrayList<Integer> content;
+    private ArrayList<Character> content;
 
-    public File(String location, String sourceName, ArrayList<Integer> content) {
+    public File(String location, String sourceName) throws IOException {
         this.location = location;
         this.name = sourceName;
         this.content =  readContent();
@@ -31,23 +31,30 @@ class File {
         this.name = name;
     }
 
-    public ArrayList<Integer> getContent() {
+    public ArrayList<Character> getContent() {
         return content;
     }
 
-    public void setContent(ArrayList<Integer> content) {
+    public void setContent(ArrayList<Character> content) {
         this.content = content;
     }
 
-    public ArrayList<Integer> readContent() throws  FileNotFoundException{
+    public ArrayList<Character> readContent() throws  IOException {
         try{
             FileReader fileReader = new FileReader(location);
             FileInputStream stream = fileReader.getStreamReader();
-            return stream.read();
+            char i = (char) -1;
+            ArrayList<Character> characters = new ArrayList<Character>();
+            do {
+                i = (char)stream.read();
+                System.out.println(i);
+                characters.add(i);
+            } while(i != (char)-1);
 
-        } catch(FileNotFoundException e) {
-            throw FileNotFoundException;
+            return characters;
 
+        } catch(IOException e) {
+            throw e;
         }
         
     }

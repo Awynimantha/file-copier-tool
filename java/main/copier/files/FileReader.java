@@ -1,4 +1,4 @@
-package java.main.copier.models;
+package files;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
