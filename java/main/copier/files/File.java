@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class File {
     private String location;
     private String name;
-    private ArrayList<Character> content;
+    private ArrayList<Integer> content;
 
     public File(String location, String sourceName) throws IOException {
         this.location = location;
@@ -31,27 +31,27 @@ public class File {
         this.name = name;
     }
 
-    public ArrayList<Character> getContent() {
+    public ArrayList<Integer> getContent() {
         return content;
     }
 
-    public void setContent(ArrayList<Character> content) {
+    public void setContent(ArrayList<Integer> content) {
         this.content = content;
     }
 
-    public ArrayList<Character> readContent() throws  IOException {
+    public ArrayList<Integer> readContent() throws  IOException {
         try{
             FileReader fileReader = new FileReader(location);
             FileInputStream stream = fileReader.getStreamReader();
-            char i = (char) -1;
-            ArrayList<Character> characters = new ArrayList<Character>();
+            int i = -1;
+            ArrayList<Integer> bytes = new ArrayList<Integer>();
             do {
-                i = (char)stream.read();
+                i = stream.read();
                 System.out.println(i);
-                characters.add(i);
+                bytes.add(i);
             } while(i != (char)-1);
 
-            return characters;
+            return bytes;
 
         } catch(IOException e) {
             throw e;
