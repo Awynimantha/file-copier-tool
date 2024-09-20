@@ -9,6 +9,7 @@ public class FileReader {
     
     public FileReader(String sourceName) throws FileNotFoundException{
         try{
+            this.sourceName = sourceName;
             this.reader = new FileInputStream(sourceName);
         } catch(FileNotFoundException e) {
             System.out.println("Failed to read the file: "+sourceName);
