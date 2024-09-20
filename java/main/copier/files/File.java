@@ -39,6 +39,11 @@ public class File {
         this.content = content;
     }
 
+    public float getSize() {
+        float val = content.size();
+        return val;
+    }
+
     public ArrayList<Integer> readContent() throws  IOException {
         try{
             FileReader fileReader = new FileReader(location);
@@ -47,9 +52,8 @@ public class File {
             ArrayList<Integer> bytes = new ArrayList<Integer>();
             do {
                 i = stream.read();
-                System.out.println(i);
                 bytes.add(i);
-            } while(i != (char)-1);
+            } while(i != -1);
 
             return bytes;
 
