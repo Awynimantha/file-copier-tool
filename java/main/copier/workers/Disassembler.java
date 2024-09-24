@@ -2,6 +2,7 @@ package workers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import configurations.config;
 
@@ -11,8 +12,8 @@ public class Disassembler {
     public int chunks;
     
     public Disassembler(ArrayList<Integer> content){
-        content = content;
-        chunks = setChunks();
+        this.content = content;
+        this.chunks = setChunks();
     }
 
     public int setChunks() {
@@ -25,8 +26,17 @@ public class Disassembler {
         return whole_chunks;
     }
 
-    public HashMap<Integer, ArrayList<Integer>> getChunks() {
-        
+    public HashMap<Integer, List<Integer>> getChunks() {
+       int l_boundary = 0;
+       int size = content.size();
+       HashMap<Integer, List<Integer>> chunks = new HashMap<Integer, List<Integer>>();
+       int i = 0;
+       for( i = 0; i!=this.chunks-1; i++) {
+            chunks.put(i, content.subList(l_boundary, l_boundary + config.CHUNK_SIZE));
+            l_boundary = l_boundary + config.CHUNK_SIZE;
+       }
+       chunks.put(i, content.subList(l_boundary, size));
+       return chunks;
     }
 
 }
